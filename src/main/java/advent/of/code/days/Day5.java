@@ -63,8 +63,6 @@ public class Day5 {
 				finalValue = value;
 			}
 		});
-
-		System.out.println("test");
 	}
 
 	private int runLoop2(char[] characters, String tempInput) {
