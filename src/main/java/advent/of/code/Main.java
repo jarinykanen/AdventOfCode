@@ -12,6 +12,7 @@ import advent.of.code.days.Day3;
 import advent.of.code.days.Day4;
 import advent.of.code.days.Day5;
 import advent.of.code.days.Day6;
+import advent.of.code.days.Day7;
 
 /**
  * @author Jari
@@ -27,7 +28,7 @@ public class Main {
 	private static Day4 day4 = new Day4();
 	private static Day5 day5 = new Day5();
 	private static Day6 day6 = new Day6();
-//	private static Day7 day7 = new Day7();
+	private static Day7 day7 = new Day7();
 
 	/**
 	 * @param args
@@ -46,7 +47,7 @@ public class Main {
 		day5.secondTask();
 		day6.firstTask();
 		day6.secondTask();
-//		day7.firstTask();
+		day7.firstTask();
 
 	}
 
