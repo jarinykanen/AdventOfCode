@@ -95,7 +95,7 @@ public class Day7 {
 
 			counter++;
 		}
-		logger.info("It will take: " + counter + " seconds to complite the construction.");
+		logger.info("It will take: " + counter + " seconds to complete the construction.");
 
 	}
 
