@@ -18,34 +18,32 @@ public class Day8 {
 
 	private List<Integer> input = new ArrayList<>();
 	private int index = 0;
-
-	private List<Integer> nodes = new ArrayList<>();
 	private List<Integer> meta = new ArrayList<>();
 
 	public Day8() {
 		String raw = Main.getCm().readFile("day8.txt").get(0);
 		List<String> stringList = Arrays.asList(raw.split(" "));
-		parseToShort(stringList);
+		parseToInt(stringList);
 	}
 
-	private void parseToShort(List<String> stringList) {
+	/**
+	 * Parse input to Integer
+	 *
+	 * @param stringList
+	 */
+	private void parseToInt(List<String> stringList) {
 		stringList.stream().forEach(string -> input.add(Integer.parseInt(string)));
 	}
 
+	/**
+	 * Both task can and should be calculated at the same time.
+	 */
 	public void bothTasks() {
 		Integer part2 = handle();
-		int finalValue = calculateFinal();
+		int finalValue = calculateSum(meta);
 		Main.getLogger().info("Sum of all metadata entries is: " + finalValue);
 		Main.getLogger().info("Value of the root node is: " + part2);
 
-	}
-
-	private int calculateFinal() {
-		int finalValue = 0;
-		for (Integer value : meta) {
-			finalValue += value;
-		}
-		return finalValue;
 	}
 
 	/**
@@ -54,13 +52,16 @@ public class Day8 {
 	 * @return
 	 */
 	private Integer handle() {
+
 		int nodeCount = getNexInt();
 		int metaCount = getNexInt();
-
 		List<Integer> tempMetaValue = new ArrayList<>();
 		List<Integer> tempNodeValue = new ArrayList<>();
 		Integer metaValue = 0;
 
+		/**
+		 * Loop this function as mane times as there are nodes.
+		 */
 		IntStream.range(0, nodeCount).forEachOrdered(n -> {
 			tempNodeValue.add(handle());
 		});
@@ -71,18 +72,38 @@ public class Day8 {
 			tempMetaValue.add(value);
 		});
 
+		return calculateMetaValue(nodeCount, tempMetaValue, tempNodeValue, metaValue);
+	}
+
+	/**
+	 * Do calculation based on the instructions
+	 * 
+	 * @param nodeCount
+	 * @param tempMetaValue
+	 * @param tempNodeValue
+	 * @param metaValue
+	 * @return
+	 */
+	private Integer calculateMetaValue(int nodeCount, List<Integer> tempMetaValue, List<Integer> tempNodeValue,
+			Integer metaValue) {
 		if (nodeCount == 0) {
 			metaValue = calculateSum(tempMetaValue);
 		} else {
-			for (Integer s : tempMetaValue) {
-				if (s >= 1 && s <= tempNodeValue.size()) {
-					metaValue += tempNodeValue.get(s - 1);
+			for (Integer value : tempMetaValue) {
+				if (value >= 1 && value <= tempNodeValue.size()) {
+					metaValue += tempNodeValue.get(value - 1);
 				}
 			}
 		}
 		return metaValue;
 	}
 
+	/**
+	 * Calculate sum of given list
+	 *
+	 * @param tempMetaValue
+	 * @return
+	 */
 	private Integer calculateSum(List<Integer> tempMetaValue) {
 		Integer finalValue = 0;
 		for (Integer value : tempMetaValue) {
@@ -91,6 +112,11 @@ public class Day8 {
 		return finalValue;
 	}
 
+	/**
+	 * Return the next value from input list
+	 *
+	 * @return
+	 */
 	private int getNexInt() {
 		index++;
 		return input.get(index - 1);
