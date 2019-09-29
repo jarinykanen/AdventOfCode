@@ -35,19 +35,20 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		day1.firstTask();
-		day1.secondTask();
-		day2.firstTask();
-		day2.secondTask();
-		day3.firstTask();
-		day3.secondTask();
-		day4.firstTask();
-		day4.secondTask();
-		day5.firstTask();
-		day5.secondTask();
-		day6.firstTask();
-		day6.secondTask();
+//		day1.firstTask();
+//		day1.secondTask();
+//		day2.firstTask();
+//		day2.secondTask();
+//		day3.firstTask();
+//		day3.secondTask();
+//		day4.firstTask();
+//		day4.secondTask();
+//		day5.firstTask();
+//		day5.secondTask();
+//		day6.firstTask();
+//		day6.secondTask();
 		day7.firstTask();
+		day7.secondTask();
 
 	}
 
